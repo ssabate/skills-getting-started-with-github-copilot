@@ -25,7 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <div class="participants">
+            <h5>Participants (${details.participants.length})</h5>
+            <ul class="participant-list"></ul>
+          </div>
         `;
+
+        const participantList = activityCard.querySelector(".participant-list");
+        const participants = details.participants.length
+          ? details.participants
+          : ["No participants yet."];
+
+        participants.forEach((participant) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = participant;
+          participantList.appendChild(listItem);
+        });
 
         activitiesList.appendChild(activityCard);
 
